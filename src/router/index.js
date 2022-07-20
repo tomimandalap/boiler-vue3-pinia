@@ -4,6 +4,7 @@ import DasboardLayout from "../Layouts/dasboard.vue";
 import Login from "../views/Login.vue";
 import Home from "../views/Index.vue";
 import Admin from "../views/Admin/Index.vue";
+import Posts from "../views/Admin/Posts.vue";
 import About from "../views/Admin/About.vue";
 import NotFound from "../views/NotFound.vue";
 
@@ -25,6 +26,11 @@ const router = createRouter({
           name: "Login",
           component: Login,
         },
+        {
+          path: "/404",
+          name: "NotFound",
+          component: NotFound,
+        },
       ],
     },
     {
@@ -38,6 +44,11 @@ const router = createRouter({
           component: Admin,
         },
         {
+          path: "posts",
+          name: "Posts",
+          component: Posts,
+        },
+        {
           path: "about",
           name: "About",
           component: About,
@@ -49,11 +60,6 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         next("/404");
       },
-    },
-    {
-      path: "/404",
-      name: "NotFound",
-      component: NotFound,
     },
   ],
 });

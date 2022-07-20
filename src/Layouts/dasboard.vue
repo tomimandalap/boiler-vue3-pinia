@@ -12,6 +12,7 @@ const logout = () => {
     <nav class="navbar">
       <div>
         <router-link to="/admin">Dasboard</router-link>
+        <router-link to="/admin/posts">Posts</router-link>
         <router-link to="/admin/about">About</router-link>
       </div>
 
