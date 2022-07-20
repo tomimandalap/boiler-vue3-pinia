@@ -58,4 +58,20 @@ const router = createRouter({
   ],
 });
 
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+
+  const isAuth = !!JSON.parse(localStorage.getItem("auth"));
+  const isAdmin = to.path.includes("admin");
+  const isLogin = to.path.includes("login");
+
+  if (isAuth) {
+    if (isLogin) next({ name: "Admin" });
+    else next();
+  } else {
+    if (isAdmin) next({ name: "Login" });
+    else next();
+  }
+});
+
 export default router;

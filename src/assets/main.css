@@ -1,14 +1,16 @@
 @import "./base.css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
-  color: white;
+  color: #2c3e50;
   margin: 0 4px;
+  text-decoration: none;
 }
 
 #app {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  max-width: 1904px;
+  margin: 0 auto;
 }
