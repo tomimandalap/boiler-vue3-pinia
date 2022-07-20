@@ -66,11 +66,15 @@ router.beforeEach((to, from, next) => {
   const isLogin = to.path.includes("login");
 
   if (isAuth) {
-    if (isLogin) next({ name: "Admin" });
-    else next();
+    if (isLogin) {
+      alert("Access diterima");
+      next({ name: "Admin" });
+    } else next();
   } else {
-    if (isAdmin) next({ name: "Login" });
-    else next();
+    if (isAdmin) {
+      alert("Access ditolak, silahkan login terlebih dahulu");
+      next({ name: "Login" });
+    } else next();
   }
 });
 
