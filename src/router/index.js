@@ -44,12 +44,6 @@ const router = createRouter({
         },
       ],
     },
-    // {
-    //   path: "*",
-    //   beforeEnter: (to, from, next) => {
-    //     next("/404");
-    //   },
-    // },
     {
       path: "/:pathMatch(.*)*",
       beforeEnter: (to, from, next) => {
