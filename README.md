@@ -1,5 +1,12 @@
 # Boiler-vue3-pinia
 
+## Feature Boilerplate
+1. Vue 3
+2. State Management use Pinia
+3. Composition API
+4. Layout (default and Dasboard)
+5. Redirect when notfound page to /404
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
