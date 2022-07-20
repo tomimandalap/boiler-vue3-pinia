@@ -6,6 +6,7 @@
 3. Composition API
 4. Layout (default and Dasboard)
 5. Redirect when notfound page to /404
+6. Validation form using vuelidate for vue 3
 
 This template should help get you started developing with Vue 3 in Vite.
 
