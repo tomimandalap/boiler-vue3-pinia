@@ -1,0 +1,14 @@
+@import "./base.css";
+
+a {
+  color: white;
+  margin: 0 4px;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
