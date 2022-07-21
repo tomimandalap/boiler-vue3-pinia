@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import DefaulLayout from "@/Layouts/default.vue";
-import DasboardLayout from "@/Layouts/dasboard.vue";
-import Login from "@/views/login.vue";
-import Home from "@/views/index.vue";
-import Admin from "@/views/admin/index.vue";
-import About from "@/views/admin/about.vue";
-import NotFound from "@/views/notfound.vue";
-import PokemonList from "@/views/admin/pokemon/index.vue";
-import DetailPokemon from "@/views/admin/pokemon/detail.vue";
+import DefaulLayout from "../../src/Layouts/default.vue";
+import DasboardLayout from "../../src//Layouts/dasboard.vue";
+import Login from "../../src/views/login.vue";
+import Home from "../../src/views/index.vue";
+import Admin from "../../src/views/admin/index.vue";
+import About from "../../src/views/admin/about.vue";
+import NotFound from "../../src/views/notfound.vue";
+import PokemonList from "../../src/views/admin/pokemon/index.vue";
+import DetailPokemon from "../../src/views/admin/pokemon/detail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
