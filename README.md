@@ -1,14 +1,14 @@
 # Boiler-vue3-pinia
 
 ## Feature Boilerplate
-1. Vue 3
-2. State Management use Pinia
+This template should help get you started developing with Vue 3 in Vite.
+1. [Vue 3](https://vuejs.org/guide/introduction.html)
+2. State Management use [Pinia](https://pinia.vuejs.org/introduction.html)
 3. Composition API
 4. Layout (default and Dasboard)
 5. Redirect when notfound page to /404
-6. Validation form using vuelidate for vue 3
-
-This template should help get you started developing with Vue 3 in Vite.
+6. Validation form using [vuelidate](https://vuelidate-next.netlify.app/examples.html) for vue 3
+7. Router Guard
 
 ## Recommended IDE Setup
 
