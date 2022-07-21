@@ -13,6 +13,15 @@ const dynamicCount = computed(() => conterStore.dynamicCount(2));
     <h3>Perkalian: {{ perKalian }}</h3>
     <h3>Pembagian: {{ dynamicCount }}</h3>
   </div>
+
+  <div class="counter">
+    <h3>Menggunakan actions button pinia</h3>
+    <div>
+      <button class="btn error" @click="decrement">-</button>
+      <button class="btn primary" @click="increment">+</button>
+      <button class="btn info" @click="reset">Reset</button>
+    </div>
+  </div>
 </template>
 <style scoped>
 div.counter {

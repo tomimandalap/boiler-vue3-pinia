@@ -1,4 +1,5 @@
 @import "./base.css";
+@import "./button.css";
 
 html {
   scroll-behavior: smooth;
