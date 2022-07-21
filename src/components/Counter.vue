@@ -6,6 +6,16 @@ const conterStore = useCounterStore();
 const count = computed(() => conterStore.count);
 const perKalian = computed(() => conterStore.doubleCount);
 const dynamicCount = computed(() => conterStore.dynamicCount(2));
+
+const increment = () => {
+  conterStore.increment(2);
+};
+const decrement = () => {
+  conterStore.decrement(2);
+};
+const reset = () => {
+  conterStore.resetcounter();
+};
 </script>
 <template>
   <div class="counter">
@@ -15,7 +25,7 @@ const dynamicCount = computed(() => conterStore.dynamicCount(2));
   </div>
 
   <div class="counter">
-    <h3>Menggunakan actions button pinia</h3>
+    <h3>Menggunakan actions pinia</h3>
     <div>
       <button class="btn error" @click="decrement">-</button>
       <button class="btn primary" @click="increment">+</button>

@@ -2,6 +2,7 @@
 import { useRoute } from "vue-router";
 import { useCounterStore } from "@/stores/counter";
 import Counter from "@/components/Counter.vue";
+import PiniaLogo from "@/components/PiniaLogo.vue";
 
 const route = useRoute();
 const conterStore = useCounterStore();
@@ -36,6 +37,11 @@ const reset = () => {
     </div>
 
     <Counter />
+
+    <div style="margin: 1rem 0">
+      <PiniaLogo />
+      <h3 style="color: white; text-align: center">Hello, Everybody...</h3>
+    </div>
   </div>
 </template>
 <style scoped>

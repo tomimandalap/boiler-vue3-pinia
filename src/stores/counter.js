@@ -10,8 +10,14 @@ export const useCounterStore = defineStore({
     dynamicCount: (state) => (result) => state.count / result,
   },
   actions: {
-    increment() {
-      this.count++;
+    increment(result) {
+      this.count += result;
+    },
+    decrement(result) {
+      this.count -= result;
+    },
+    resetcounter() {
+      this.count = 0;
     },
   },
 });
