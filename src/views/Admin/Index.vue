@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { useCounterStore } from "@/stores/counter";
 import Counter from "@/components/Counter.vue";
@@ -6,6 +7,8 @@ import PiniaLogo from "@/components/PiniaLogo.vue";
 
 const route = useRoute();
 const conterStore = useCounterStore();
+const name = ref("");
+
 const increment = () => {
   conterStore.$patch((state) => {
     state.count++;
@@ -18,6 +21,10 @@ const decrement = () => {
 };
 const reset = () => {
   conterStore.$reset();
+};
+
+const submitEmit = (result) => {
+  name.value = result;
 };
 </script>
 
@@ -39,8 +46,10 @@ const reset = () => {
     <Counter />
 
     <div style="margin: 1rem 0">
-      <PiniaLogo />
-      <h3 style="color: white; text-align: center">Hello, Everybody...</h3>
+      <PiniaLogo :title="'Hello, Everybody...'" @name="submitEmit" />
+      <h3 style="color: white; text-align: center">
+        My name is {{ name ? name : "..." }}
+      </h3>
     </div>
   </div>
 </template>

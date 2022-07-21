@@ -194,22 +194,40 @@
       </linearGradient>
     </defs>
   </svg>
+
+  <div style="color: white; text-align: center">
+    <button class="btn primary" @click="submitEmit">Click Me</button>
+    <h3>{{ title }}</h3>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { onMounted, onUnmounted, ref } from "vue";
 
-const blinking = ref<"open" | "closed">("open");
-const talking = ref<"open" | "closed">("closed");
+const blinking = ref((ref < "open") | ("closed" > "open"));
+const talking = ref((ref < "open") | ("closed" > "open"));
 
 const blinkTimer = 100;
 const talkRate = 120;
+
+const props = defineProps({
+  title: {
+    type: String,
+    default: "",
+  },
+});
+
+const emit = defineEmits(["name"]);
+
+const submitEmit = () => {
+  emit("name", "Pinia");
+};
 
 onMounted(() => {
   let timerId = setInterval(() => {
     let blinkState = 0;
     function blinkHandler() {
-      blinkState++;
+      blinkState = parseInt(blinkState) + 1;
 
       if (blinkState % 2) {
         blinking.value = "closed";
@@ -231,16 +249,16 @@ onMounted(() => {
   let talkingTimer = setInterval(() => {
     let blinkState = 0;
     function blinkHandler() {
-      blinkState++;
+      blinkState = parseInt(blinkState) + 1;
 
       if (blinkState % 2) {
-        // talking.value = 'closed'
+        talking.value = "closed";
         setTimeout(blinkHandler, talkRate);
       } else if (blinkState < 10) {
-        // talking.value = 'open'
+        talking.value = "open";
         setTimeout(blinkHandler, talkRate);
       } else {
-        // talking.value = 'closed'
+        talking.value = "closed";
       }
     }
     setTimeout(blinkHandler, 0);

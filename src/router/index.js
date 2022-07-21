@@ -4,7 +4,7 @@ import DasboardLayout from "../Layouts/dasboard.vue";
 import Login from "../views/Login.vue";
 import Home from "../views/Index.vue";
 import Admin from "../views/Admin/Index.vue";
-import Posts from "../views/Admin/Posts.vue";
+import Pokemon from "../views/Admin/Pokemon.vue";
 import About from "../views/Admin/About.vue";
 import NotFound from "../views/NotFound.vue";
 
@@ -44,9 +44,9 @@ const router = createRouter({
           component: Admin,
         },
         {
-          path: "posts",
-          name: "Posts",
-          component: Posts,
+          path: "pokemon-list",
+          name: "Pokemon",
+          component: Pokemon,
         },
         {
           path: "about",
