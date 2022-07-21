@@ -3,10 +3,11 @@ import DefaulLayout from "../Layouts/default.vue";
 import DasboardLayout from "../Layouts/dasboard.vue";
 import Login from "../views/Login.vue";
 import Home from "../views/Index.vue";
-import Admin from "../views/Admin/Index.vue";
-import Pokemon from "../views/Admin/Pokemon.vue";
-import About from "../views/Admin/About.vue";
+import Admin from "../views/admin/Index.vue";
+import About from "../views/admin/About.vue";
 import NotFound from "../views/NotFound.vue";
+import PokemonList from "../views/admin/pokemon/index.vue";
+import DetailPokemon from "../views/admin/pokemon/detail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,8 +46,13 @@ const router = createRouter({
         },
         {
           path: "pokemon-list",
-          name: "Pokemon",
-          component: Pokemon,
+          name: "PokemonList",
+          component: PokemonList,
+        },
+        {
+          path: "pokemon/:detail",
+          name: "Detail",
+          component: DetailPokemon,
         },
         {
           path: "about",
@@ -82,6 +88,10 @@ router.beforeEach((to, from, next) => {
       next({ name: "Login" });
     } else next();
   }
+});
+
+router.afterEach((to, from) => {
+  document.title = `${to.name || "Boilerplate"} || VuePinia`;
 });
 
 export default router;
