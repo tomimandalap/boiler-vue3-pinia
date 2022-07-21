@@ -28,7 +28,7 @@ const router = createRouter({
           component: Login,
         },
         {
-          path: "/404",
+          path: "404",
           name: "NotFound",
           component: NotFound,
         },
