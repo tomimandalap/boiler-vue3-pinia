@@ -15,3 +15,7 @@ a {
   max-width: 1904px;
   margin: 0 auto;
 }
+
+.router-link-exact-active {
+  font-weight: 700;
+}

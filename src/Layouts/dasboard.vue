@@ -1,18 +1,34 @@
 <script setup>
-import { useRouter } from "vue-router";
+import { ref, onMounted, onUpdated } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
+const route = useRoute();
 const router = useRouter();
+const fullpath = ref(false);
 const logout = () => {
   localStorage.removeItem("auth");
   router.push("/");
 };
+
+onUpdated(() => {
+  fullpath.value = route.fullPath.includes("pokemon");
+});
+
+onMounted(() => {
+  fullpath.value = route.fullPath.includes("pokemon");
+});
 </script>
 <template>
   <div class="layout-admin">
     <nav class="navbar">
       <div>
         <router-link to="/admin">Dasboard</router-link>
-        <router-link to="/admin/pokemon-list">Pokemon</router-link>
+        <router-link
+          to="/admin/pokemon-list"
+          :class="fullpath ? 'router-link-exact-active' : ''"
+        >
+          Pokemon
+        </router-link>
         <router-link to="/admin/about">About</router-link>
       </div>
 
