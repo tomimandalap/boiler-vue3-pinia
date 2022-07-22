@@ -103,6 +103,7 @@ label {
 div.form-group input {
   width: 100%;
   height: 38px;
+  padding: 0 6px;
 }
 
 div.form-group span {
