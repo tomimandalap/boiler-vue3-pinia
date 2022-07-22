@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { reactive, computed } from "vue";
 import useVuelidate from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
+import { required, email, minLength, helpers } from "@vuelidate/validators";
 
 export default {
   setup() {
@@ -12,10 +12,25 @@ export default {
       password: "",
     });
 
+    const required_ = "Field tidak boleh kosong";
+    const email_ = "Email tidak valid";
+    const minLength_ = ($params) => {
+      return `Minimal password ${$params.min} digit`;
+    };
+
     const validations = computed(() => {
       return {
-        email: { required, email },
-        password: { required, minLength: minLength(8) },
+        email: {
+          required: helpers.withMessage(required_, required),
+          email: helpers.withMessage(email_, email),
+        },
+        password: {
+          required: helpers.withMessage(required_, required),
+          minLength: helpers.withMessage(
+            ({ $params }) => minLength_($params),
+            minLength(8),
+          ),
+        },
       };
     });
 
