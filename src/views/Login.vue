@@ -56,36 +56,38 @@ export default {
     <hr />
     <br />
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        id="email"
-        ref="email"
-        v-model="form.email"
-        type="text"
-        placeholder="example@mail.com"
-        maxlength="50"
-      />
-      <span v-if="v$.email.$error">
-        {{ v$.email.$errors[0].$message }}
-      </span>
-    </div>
+    <form @submit.prevent="Login">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          ref="email"
+          v-model="form.email"
+          type="text"
+          placeholder="example@mail.com"
+          maxlength="50"
+        />
+        <span v-if="v$.email.$error">
+          {{ v$.email.$errors[0].$message }}
+        </span>
+      </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        ref="email"
-        v-model="form.password"
-        type="password"
-        placeholder="Password"
-        maxlength="30"
-      />
-      <span v-if="v$.password.$error">
-        {{ v$.password.$errors[0].$message }}
-      </span>
-    </div>
-    <button type="submit" @click="Login">Login</button>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          ref="email"
+          v-model="form.password"
+          type="password"
+          placeholder="Password"
+          maxlength="30"
+        />
+        <span v-if="v$.password.$error">
+          {{ v$.password.$errors[0].$message }}
+        </span>
+      </div>
+      <button type="submit">Login</button>
+    </form>
   </div>
 </template>
 <style scoped>
