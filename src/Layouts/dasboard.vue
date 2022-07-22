@@ -29,7 +29,7 @@ onMounted(() => {
         >
           Pokemon
         </router-link>
-        <router-link to="/admin/about">About</router-link>
+        <router-link to="/admin/vuelidate">Vuelidate</router-link>
       </div>
 
       <button @click="logout" class="btn-logout">Logout</button>

@@ -4,7 +4,7 @@ import DasboardLayout from "../Layouts/dasboard.vue";
 import Login from "../views/login.vue";
 import Home from "../views/index.vue";
 import Admin from "../views/admin/index.vue";
-import About from "../views/admin/about.vue";
+import Vuelidate from "../views/admin/vuelidate.vue";
 import NotFound from "../views/notfound.vue";
 import PokemonList from "../views/admin/pokemon/index.vue";
 import DetailPokemon from "../views/admin/pokemon/detail.vue";
@@ -55,9 +55,9 @@ const router = createRouter({
           component: DetailPokemon,
         },
         {
-          path: "about",
-          name: "About",
-          component: About,
+          path: "vuelidate",
+          name: "Vuelidate",
+          component: Vuelidate,
         },
       ],
     },
