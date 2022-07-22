@@ -90,8 +90,8 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-router.afterEach((to, from) => {
-  document.title = `${to.name || "Boilerplate"} || VuePinia`;
+router.afterEach((to) => {
+  document.title = `${to.name || "Vite App"} || VuePinia`;
 });
 
 export default router;
