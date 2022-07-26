@@ -1,31 +1,94 @@
-<script setup>
-import { reactive } from "vue";
+<script>
+import { reactive, computed } from "vue";
 import { useRoute } from "vue-router";
 import FromMultiple from "@/components/Form.vue";
+import useVuelidate from "@vuelidate/core";
+import { required, helpers, minLength, maxLength } from "@vuelidate/validators";
 
-const route = useRoute();
-const form = reactive({
-  name: "",
-  date: "",
-  gender: "",
-  address: "",
-  image: "",
-});
+export default {
+  components: {
+    FromMultiple,
+  },
+  setup() {
+    const route = useRoute();
+    const form = reactive({
+      name: "",
+      date: "",
+      gender: "",
+      address: "",
+      image: null,
+    });
 
-const reset = () => {
-  Object.assign(form, {
-    name: "",
-    date: "",
-    gender: "",
-    address: "",
-    image: "",
-  });
-};
+    const required_ = "Field tidak boleh kosong";
+    const minLength_ = ($params, name_field) => {
+      return `Minimal ${name_field} ${$params.min} karakter`;
+    };
+    const maxLength_ = ($params, name_field) => {
+      return `Maksimal ${name_field} ${$params.max} karakter`;
+    };
 
-const submit = () => {
-  const data = {};
-  Object.assign(data, form);
-  console.log("THIS", data);
+    const validations = computed(() => {
+      return {
+        name: {
+          required: helpers.withMessage(required_, required),
+          minLength: helpers.withMessage(
+            ({ $params }) => minLength_($params, "nama"),
+            minLength(4),
+          ),
+          maxLength: helpers.withMessage(
+            ({ $params }) => maxLength_($params, "nama"),
+            maxLength(40),
+          ),
+        },
+        date: {
+          required: helpers.withMessage(required_, required),
+        },
+        gender: {
+          required: helpers.withMessage(required_, required),
+        },
+        address: {
+          required: helpers.withMessage(required_, required),
+          minLength: helpers.withMessage(
+            ({ $params }) => minLength_($params, "alamat"),
+            minLength(10),
+          ),
+          maxLength: helpers.withMessage(
+            ({ $params }) => maxLength_($params, "alamat"),
+            maxLength(250),
+          ),
+        },
+        image: {
+          required: helpers.withMessage(required_, required),
+        },
+      };
+    });
+
+    const v$ = useVuelidate(validations, form);
+
+    return { route, form, v$ };
+  },
+  methods: {
+    submit() {
+      const data = {};
+      Object.assign(data, this.form);
+
+      this.v$.$validate();
+      if (this.v$.$error) return;
+
+      console.log("THIS", data);
+    },
+    reset() {
+      Object.assign(this.form, {
+        name: "",
+        date: "",
+        gender: "",
+        address: "",
+        image: null,
+      });
+
+      this.v$.$reset();
+    },
+  },
 };
 </script>
 
@@ -43,8 +106,14 @@ const submit = () => {
       v-model:gender="form.gender"
       v-model:address="form.address"
       v-model:image="form.image"
+      :errormessage="v$"
       :submit="submit"
       :reset="reset"
+      @resetImage="
+        () => {
+          v$.image.$reset();
+        }
+      "
     />
   </div>
 </template>
