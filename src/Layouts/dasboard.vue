@@ -1,6 +1,9 @@
 <script setup>
-import { ref, onMounted, onUpdated } from "vue";
+import { ref, onMounted, onUpdated, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { useLoadingStore } from "@/stores/loading";
+import Loading from "@/components/loading.vue";
+const loadingStore = useLoadingStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -10,12 +13,20 @@ const logout = () => {
   router.push("/");
 };
 
+const overlay = computed(() => loadingStore.overlay);
+
 onUpdated(() => {
   fullpath.value = route.fullPath.includes("pokemon");
 });
 
 onMounted(() => {
   fullpath.value = route.fullPath.includes("pokemon");
+
+  loadingStore.setOverlay(true);
+
+  setTimeout(() => {
+    loadingStore.setOverlay(false);
+  }, 2000);
 });
 </script>
 <template>
@@ -36,7 +47,8 @@ onMounted(() => {
     </nav>
 
     <div class="content">
-      <RouterView />
+      <Loading v-if="overlay" />
+      <RouterView v-else />
     </div>
 
     <footer class="footer">
