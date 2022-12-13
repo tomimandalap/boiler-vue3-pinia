@@ -1,71 +1,49 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DefaulLayout from "../Layouts/default.vue";
-import DasboardLayout from "../Layouts/dasboard.vue";
+import DashoboardLayout from "../Layouts/dasboard.vue";
 import Login from "../views/login.vue";
-import Home from "../views/index.vue";
-import Admin from "../views/admin/index.vue";
-import Vuelidate from "../views/admin/vuelidate.vue";
 import NotFound from "../views/notfound.vue";
-import PokemonList from "../views/admin/pokemon/index.vue";
-import DetailPokemon from "../views/admin/pokemon/detail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "default",
       component: DefaulLayout,
       children: [
         {
           path: "",
-          name: "Home",
-          component: Home,
+          component: () => import("../views/index.vue"),
+          beforeEnter: () => {
+            return "/web";
+          },
+          meta: { auth: false },
         },
         {
           path: "login",
           name: "Login",
           component: Login,
-        },
-        {
-          path: "404",
-          name: "NotFound",
-          component: NotFound,
+          meta: { auth: false },
         },
       ],
     },
     {
-      path: "/admin",
-      name: "dasboard",
-      component: DasboardLayout,
+      path: "/web",
+      component: DashoboardLayout,
       children: [
         {
           path: "",
-          name: "Admin",
-          component: Admin,
-        },
-        {
-          path: "pokemon-list",
-          name: "PokemonList",
-          component: PokemonList,
-        },
-        {
-          path: "pokemon/:detail",
-          name: "Detail",
-          component: DetailPokemon,
-        },
-        {
-          path: "vuelidate",
-          name: "Vuelidate",
-          component: Vuelidate,
+          name: "Dashoboard",
+          component: () => import("../views/web/index.vue"),
+          meta: { auth: false },
         },
       ],
     },
     {
       path: "/:pathMatch(.*)*",
-      beforeEnter: (to, from, next) => {
-        next("/404");
-      },
+      name: "not found",
+      component: NotFound,
+      meta: { auth: false },
     },
   ],
 });
@@ -73,25 +51,32 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
 
-  const isAuth = !!JSON.parse(localStorage.getItem("auth"));
-  const isAdmin = to.path.includes("admin");
-  const isLogin = to.path.includes("login");
+  // const isAuth = to.meta.auth;
+  // const token = !!JSON.parse(localStorage.getItem("token"));
+  // const isAdmin = to.path.includes("admin");
+  // const isLogin = to.path.includes("login");
 
-  if (isAuth) {
-    if (isLogin) {
-      alert("Access diterima");
-      next({ name: "Admin" });
-    } else next();
-  } else {
-    if (isAdmin) {
-      alert("Access ditolak, silahkan login terlebih dahulu");
-      next({ name: "Login" });
-    } else next();
-  }
+  // if (token) next();
+  // else if (!token) next({ name: "Login" });
+  // else next();
+
+  next();
+
+  // if (isAuth) {
+  //   if (isLogin) {
+  //     alert("Access diterima");
+  //     next({ name: "Admin" });
+  //   } else next();
+  // } else {
+  //   if (isAdmin) {
+  //     alert("Access ditolak, silahkan login terlebih dahulu");
+  //     next({ name: "Login" });
+  //   } else next();
+  // }
 });
 
 router.afterEach((to) => {
-  document.title = `${to.name || "Vite App"} || VuePinia`;
+  document.title = `${to.name || "Vue 3"} - Toktok`;
 });
 
 export default router;
