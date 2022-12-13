@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DefaulLayout from "../Layouts/default.vue";
 import DashoboardLayout from "../Layouts/dasboard.vue";
+import LandingLayout from "../Layouts/landing.vue";
 import Login from "../views/login.vue";
 import NotFound from "../views/notfound.vue";
 
@@ -28,12 +29,24 @@ const router = createRouter({
       ],
     },
     {
-      path: "/web",
+      path: "/admin",
       component: DashoboardLayout,
       children: [
         {
           path: "",
           name: "Dashoboard",
+          component: () => import("../views/admin/index.vue"),
+          meta: { auth: false },
+        },
+      ],
+    },
+    {
+      path: "/web",
+      component: LandingLayout,
+      children: [
+        {
+          path: "",
+          name: "Home",
           component: () => import("../views/web/index.vue"),
           meta: { auth: false },
         },
